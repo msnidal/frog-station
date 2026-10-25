@@ -1,0 +1,506 @@
+[
+  {
+    "layer": 0,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-00.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-01.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-02.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-03.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-04.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-05.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-06.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-07.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-08.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-09.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-10.bin"
+  },
+  {
+    "layer": 0,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-11.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-12.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-13.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-14.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-15.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-16.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-17.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-18.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-19.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-20.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-21.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-22.bin"
+  },
+  {
+    "layer": 1,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-23.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-24.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-25.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-26.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-27.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-28.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-29.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-30.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-31.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-32.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-33.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-34.bin"
+  },
+  {
+    "layer": 2,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-35.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-36.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-37.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-38.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-39.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-40.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-41.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-42.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-43.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-44.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-45.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-46.bin"
+  },
+  {
+    "layer": 3,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-47.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-48.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-49.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-50.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-51.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-52.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-53.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-54.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-55.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-56.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-57.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-58.bin"
+  },
+  {
+    "layer": 4,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-59.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-60.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 0,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-61.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 0,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-62.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-63.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 2,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-64.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 2,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-65.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-66.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 3,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-67.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 3,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-68.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": false,
+    "file": "left-69.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 15,
+    "lamp_on": false,
+    "alert": false,
+    "file": "left-70.bin"
+  },
+  {
+    "layer": 5,
+    "mask": 15,
+    "lamp_on": true,
+    "alert": true,
+    "file": "left-71.bin"
+  }
+]
