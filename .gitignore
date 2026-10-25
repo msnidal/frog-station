@@ -1,0 +1,11 @@
+build/
+.cache/
+.venv/
+__pycache__/
+*.pyc
+*.app/
+.DS_Store
+*.vil
+*.uf2
+*.elf
+.env*

@@ -1,0 +1,30 @@
+Field Station host protocol — interface revision 2, transport version 1
+
+32-byte raw-HID packets on VID 04d8 / PID eb2d, usage page ff60 / usage 61.
+Vial UID wire identity: 060000007efdfc5b7d394806 (12 bytes).
+Prefix bytes 0..3: F1 46 53 01. All unassigned bytes must be zero.
+Byte 4 opcode:
+  0: GET only.
+  1: Existing task status. Byte 5 state (0 local, 2 work, 3 wait, 4 done, 5 fail).
+     Bytes 6..7 generation, bytes 8..9 lease in milliseconds, little endian.
+     Lease 1000..30000 for task states. State 0 clears only the task channel.
+  2: Music. Byte 5 bool (0 stopped/paused, 1 playing); bytes 8..9 lease LE16.
+     Playing lease 1000..30000. False clears only music; task state is untouched.
+
+Reply: prefix preserved; byte 4 opcode, byte 5 error (0 success, 1 version,
+2 invalid value/lease, 3 unsupported operation), byte 6 current display state,
+byte 7 valid task lease, byte 8 width 32, byte 9 height 128, bytes 10..11
+interface revision LE16 (2), byte 12 capabilities bit0 music channel,
+byte 13 current valid music lease. Remaining bytes zero.
+Display states: idle0, typing1, work2, wait3, done4, fail5, sleep6, music7.
+Task setters cannot set local typing/sleep/music states directly.
+
+Helper must GET and verify identity, geometry, revision and music capability
+before using opcode 2. The prepared helper uses an 8000ms music lease and 2000ms
+poll interval. It never sends keyboard reports, keymap writes, unlock or reset.
+Music and typing are orthogonal. Priority: inactivity sleep, live task status,
+recent typing, live music, idle. Music note appears during typing/music only.
+
+Split display protocol is internal version 2, 22 bytes, coalesced at most every
+50ms with a 500ms heartbeat. Original timestamps are retained so retransmitting
+old split data does not renew typing or host leases. Both halves need this build.
