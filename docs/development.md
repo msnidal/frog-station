@@ -13,6 +13,8 @@ python3 scripts/render_demo.py
 The tests cover sustained typing, tap-hold handling, state priority, lease expiry,
 sleep/wake, split timestamps, framebuffer boundaries and the helper wire protocol.
 Display fixtures compare the left renderer against 72 approved framebuffers.
+Environment tests check fern shelter, exposed rain paths, text readability and all
+poses. Canopy checks compare the rain against the visible leaves as they sway.
 
 ## Firmware toolchain
 
@@ -54,7 +56,8 @@ check on another Mac. Keep signing credentials outside the repository.
 ## Artwork
 
 `assets/field-music.json` is the source: 32-bit rows for every frame, durations,
-loop behavior, font and modifier symbols. To regenerate C tables and fixtures:
+loop behavior, font, modifier symbols, fern pixels and opaque object spans.
+To regenerate C tables and fixtures:
 
 ```sh
 python3 scripts/generate_assets.py
@@ -62,5 +65,31 @@ sh scripts/test.sh
 python3 scripts/render_demo.py
 ```
 
-The demo calls the compiled display renderer with the same source grids. It is a
-framebuffer demonstration, not a camera recording of OLED brightness or flicker.
+The demo calls the compiled display and environment renderer with the same source
+grids. GIFs sample every 50 ms; firmware requests a frame every 33 ms. The demo
+shows framebuffer pixels, not a camera recording of OLED brightness or flicker.
+
+Rain and fern sway use QMK's split-synchronized clock and continue across gesture
+changes. They do not update input activity or delay screen sleep. Both renderers
+start from a fresh scene each frame, so moving pixels leave no trails.
+
+Optional definitions in `firmware/config.h`:
+
+| Definition | Default | Range |
+| --- | --- | --- |
+| `FS_RAIN_SPEED` | `48` | 20–90 pixels/second |
+| `FS_RAIN_DROPS` | `7` | 0–12 per screen; 0 disables rain |
+| `FS_FERN_SWAY` | `1` | 0 disables fern motion |
+
+Rain enters at the top of each screen. Small clear backings protect the status
+word, held modifier icons and active typing meter; unused space remains open.
+These readouts hide passing drops without stopping their descent.
+
+Ferns intercept rain at their current swaying outline, keeping the space below
+dry. Exposed columns still carry rain to the ground. The frog, station and
+mushroom retain their solid silhouettes, and the music note keeps its reading
+margin. Ground ripples appear only where a drop can reach the floor.
+
+Fern impacts produce a brief splash of one or two pixels, within two pixels of
+the contact point. It ends after 180 ms and respects the same readout and canopy
+masks. Only the first leaf hit by a drop produces a splash.

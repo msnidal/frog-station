@@ -13,10 +13,7 @@
 #endif
 _Static_assert(OLED_DISPLAY_WIDTH == 128 && OLED_DISPLAY_HEIGHT == 32, "This artwork requires a 128x32 physical display rotated to portrait");
 static fs_logic_t station;
-static uint8_t drawn_frame = 255;
-static uint8_t drawn_layer = 255, drawn_mods = 255;
-static bool drawn_lamp, drawn_alert, diagnostic_drawn;
-static uint8_t drawn_meter = 255, drawn_music_phase = 255;
+static bool diagnostic_drawn;
 
 static void receive_station(uint8_t in_length, const void *in, uint8_t out_length, void *out) {
     (void)out_length; (void)out;
@@ -96,18 +93,17 @@ static const fs_step_t *animation_step(uint8_t state, uint32_t elapsed) {
     }
     return &a->steps[a->count - 1];
 }
-static void render_layers(const fs_step_t *step) {
+static void render_layers(const fs_step_t *step, uint32_t now) {
     uint8_t layer = get_highest_layer(layer_state | default_layer_state);
     uint8_t mods = get_mods() | get_weak_mods();
 #ifndef NO_ACTION_ONESHOT
     mods |= get_oneshot_mods() | get_oneshot_locked_mods();
 #endif
-    if (drawn_layer == layer && drawn_mods == mods && drawn_lamp == step->lamp_on && drawn_alert == step->alert) return;
-    drawn_layer = layer; drawn_mods = mods; drawn_lamp = step->lamp_on; drawn_alert = step->alert;
     uint8_t icons = ((mods & MOD_MASK_GUI) ? 1 : 0) | ((mods & MOD_MASK_SHIFT) ? 2 : 0) |
                     ((mods & MOD_MASK_CTRL) ? 4 : 0) | ((mods & MOD_MASK_ALT) ? 8 : 0);
     static uint8_t framebuffer[512];
     fs_render_left(framebuffer, layer, icons, step->lamp_on, step->alert);
+    fs_render_environment(framebuffer, 0, now, false);
     oled_set_cursor(0, 0);
     oled_write_raw((const char *)framebuffer, sizeof(framebuffer));
 }
@@ -136,7 +132,7 @@ bool oled_task_user(void) {
     }
     bool sleeping = current_state == FS_SLEEP;
     if (sleeping && elapsed >= fs_animations[FS_SLEEP].total_ms) {
-        oled_off(); drawn_frame = 255; drawn_layer = 255; diagnostic_drawn = false;
+        oled_off(); diagnostic_drawn = false;
         return false;
     }
     oled_on();
@@ -146,21 +142,17 @@ bool oled_task_user(void) {
 #else
     (void)render_diagnostic;
     const fs_step_t *step = animation_step(current_state, elapsed);
-    if (is_keyboard_left()) render_layers(step);
+    if (is_keyboard_left()) render_layers(step, now);
     else {
         uint8_t index = step->frame;
         static uint8_t meter;
         meter = current_state == FS_TYPING ? fs_meter_level(get_current_wpm(), meter) : 0;
         bool show_music = music && (current_state == FS_TYPING || current_state == FS_MUSIC);
-        uint8_t music_phase = show_music ? 1 + (now / 1200u) % 2u : 0;
-        if (drawn_frame != index || drawn_meter != meter || drawn_music_phase != music_phase) {
-            drawn_frame = index; drawn_meter = meter; drawn_music_phase = music_phase;
-            static uint8_t framebuffer[512];
-            memcpy(framebuffer, fs_pixels[index], sizeof(framebuffer));
-            fs_overlay_right(framebuffer, current_state == FS_TYPING, meter, show_music, music_phase == 2);
-            oled_set_cursor(0, 0); oled_write_raw((const char *)framebuffer, sizeof(framebuffer));
-        }
-
+        static uint8_t framebuffer[512];
+        memcpy(framebuffer, fs_pixels[index], sizeof(framebuffer));
+        fs_overlay_right(framebuffer, current_state == FS_TYPING, meter, show_music);
+        fs_render_environment(framebuffer, 1, now, show_music);
+        oled_set_cursor(0, 0); oled_write_raw((const char *)framebuffer, sizeof(framebuffer));
     }
 #endif
     return false;

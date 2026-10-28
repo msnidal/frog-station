@@ -53,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_ACTIVITY_ENABLE
 #define SPLIT_TRANSACTION_IDS_USER FS_HOST_SYNC
 #define OLED_TIMEOUT 0
-#define OLED_UPDATE_INTERVAL 50
+#define OLED_UPDATE_INTERVAL 33
 // Both physical OLEDs confirmed upright with all edges visible at 270 degrees.
 #define FS_LEFT_ROTATION OLED_ROTATION_270
 #define FS_RIGHT_ROTATION OLED_ROTATION_270

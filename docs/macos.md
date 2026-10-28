@@ -10,7 +10,7 @@ control playback, or monitor Mac keystrokes. Spotify must already be running.
 4. Enable **Spotify music mode** and allow its Spotify Automation request.
 5. Optionally add Frog Station in **System Settings → General → Login Items & Extensions → Open at Login**.
 
-The private preview is ad-hoc signed and has not been notarized. A downloaded
+The preview is ad-hoc signed and has not been notarized. A downloaded
 copy may need approval in macOS Privacy & Security. Do not disable Gatekeeper.
 Building from source is also supported; see [development](development.md).
 

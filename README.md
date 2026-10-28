@@ -8,7 +8,8 @@ app for Spotify.
 32×128 per screen, enlarged 4×. [All animations](docs/animations.md).
 
 The left screen shows the current layer and held modifiers. The frog on the
-right reacts to typing, with a small meter showing typing speed.
+right taps a field key while you type, with a small meter showing typing speed.
+Ferns sway and shelter both scenes from the rain.
 
 When Spotify is playing, the frog switches to a music animation. That part needs
 the Mac app; everything else runs on the keyboard.
@@ -23,7 +24,7 @@ Tested hardware: KeyboardHoarders Lily58/rev1, RP2040 controllers using
 `rp2040_ce`, two 128×32 OLEDs mounted vertically, Vial. The Mac app requires
 macOS 13 or later and supports Apple Silicon and Intel.
 
-This is a private preview. The Mac download is locally signed, not notarized.
+The Mac download is locally signed, not notarized.
 The example keymap is based on the vendor layout; export your Vial layout before
 flashing and restore it afterwards.
 
