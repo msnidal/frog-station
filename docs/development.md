@@ -13,7 +13,8 @@ python3 scripts/render_demo.py
 The tests cover sustained typing, tap-hold handling, state priority, lease expiry,
 sleep/wake, split timestamps, framebuffer boundaries and the helper wire protocol.
 Display fixtures compare the left renderer against 72 approved framebuffers.
-Environment tests check rain occlusion, open gaps, text readability and all poses.
+Environment tests check fern shelter, exposed rain paths, text readability and all
+poses. Canopy checks compare the rain against the visible leaves as they sway.
 
 ## Firmware toolchain
 
@@ -80,6 +81,11 @@ Optional definitions in `firmware/config.h`:
 | `FS_RAIN_DROPS` | `7` | 0–12 per screen; 0 disables rain |
 | `FS_FERN_SWAY` | `1` | 0 disables fern motion |
 
-Rain stays behind the frog, station and mushroom. Occlusion follows their
-silhouettes; gaps between supports remain open. The music note has a small
-reading margin, and the top 28 rows are reserved for status and modifiers.
+Rain enters at the top of each screen. Small clear backings protect the status
+word, held modifier icons and active typing meter; unused space remains open.
+These readouts hide passing drops without stopping their descent.
+
+Ferns intercept rain at their current swaying outline, keeping the space below
+dry. Exposed columns still carry rain to the ground. The frog, station and
+mushroom retain their solid silhouettes, and the music note keeps its reading
+margin. Ground ripples appear only where a drop can reach the floor.

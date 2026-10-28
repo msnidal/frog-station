@@ -9,7 +9,7 @@ app for Spotify.
 
 The left screen shows the current layer and held modifiers. The frog on the
 right taps a field key while you type, with a small meter showing typing speed.
-Ferns sway and rain falls around both scenes.
+Ferns sway and shelter both scenes from the rain.
 
 When Spotify is playing, the frog switches to a music animation. That part needs
 the Mac app; everything else runs on the keyboard.
