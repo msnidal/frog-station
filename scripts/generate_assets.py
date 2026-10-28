@@ -42,6 +42,30 @@ left.append('static const uint8_t fs_mod_symbols[4][7] = {')
 for name in ['cmd','shift','ctrl','alt']:left.append('    {'+', '.join(str(int(s,2)) for s in d['symbols'][name])+'},')
 left.append('};')
 (P/'firmware/station_left_assets.h').write_text('\n'.join(left)+'\n')
+# Sparse authored fern pixels and opaque object interiors, shared by the
+# firmware renderer and native previews. Black between supports stays open air.
+environment=['// Generated from assets/field-music.json; GPL-2.0-or-later.',
+ '#pragma once', '#include <stdint.h>',
+ 'typedef struct { uint8_t x, y; } fs_point_t;',
+ 'typedef struct { const fs_point_t *points; uint16_t count, period, phase; uint8_t panel, tip, full; } fs_fern_t;',
+ 'typedef struct { uint8_t panel, y, x0, x1; } fs_span_t;']
+ferns=d['environment']['ferns']
+for i,fern in enumerate(ferns):
+ assert fern['panel'] in (0,1) and 0 <= fern['tip'] <= fern['full'] < 128
+ assert 0 < fern['period'] <= 65535 and 0 <= fern['phase'] < fern['period']
+ assert all(0 <= x < 31 and 28 <= y < 128 for x,y in fern['points'])
+ environment.append(f'static const fs_point_t fs_fern_{i}[] = {{'+', '.join('{'+f'{x}, {y}'+'}' for x,y in fern['points'])+'};')
+environment.append('static const fs_fern_t fs_ferns[] = {')
+for i,fern in enumerate(ferns):
+ environment.append('    {'+f'fs_fern_{i}, {len(fern["points"])}, {fern["period"]}, {fern["phase"]}, {fern["panel"]}, {fern["tip"]}, {fern["full"]}'+'},')
+environment.append('};')
+environment.append('static const fs_span_t fs_solid_spans[] = {')
+for panel,spans in enumerate(d['environment']['solid_spans']):
+ for y,x0,x1 in spans:
+  assert 28 <= y < 128 and 0 <= x0 <= x1 < 32
+  environment.append('    {'+f'{panel}, {y}, {x0}, {x1}'+'},')
+environment.append('};')
+(P/'firmware/station_environment_assets.h').write_text('\n'.join(environment)+'\n')
 # Binary fixtures keep the native rendering test independent of C table syntax.
 fixtures=P/'tests/fixtures';fixtures.mkdir(exist_ok=True)
 records=[]

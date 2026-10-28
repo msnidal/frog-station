@@ -13,7 +13,9 @@ lib = ctypes.CDLL(str(library))
 left = lib.fs_render_left
 left.argtypes = [ctypes.POINTER(ctypes.c_uint8), ctypes.c_uint8, ctypes.c_uint8, ctypes.c_bool, ctypes.c_bool]
 overlay = lib.fs_overlay_right
-overlay.argtypes = [ctypes.POINTER(ctypes.c_uint8), ctypes.c_bool, ctypes.c_uint8, ctypes.c_bool, ctypes.c_bool]
+overlay.argtypes = [ctypes.POINTER(ctypes.c_uint8), ctypes.c_bool, ctypes.c_uint8, ctypes.c_bool]
+environment = lib.fs_render_environment
+environment.argtypes = [ctypes.POINTER(ctypes.c_uint8), ctypes.c_uint8, ctypes.c_uint32, ctypes.c_bool]
 data = json.loads((ROOT / 'assets/field-music.json').read_text())
 def pack(pixels):
     rows = [int(pixels[y*8:y*8+8], 16) for y in range(128)]
@@ -38,7 +40,9 @@ def frame(state, elapsed, clock, *, layer=0, mods=0, meter=0, music=False):
     a = (ctypes.c_uint8*512)()
     left(a, layer, mods, chosen['lamp_on'], chosen['alert'])
     b = (ctypes.c_uint8*512).from_buffer_copy(pack(chosen['pixels']))
-    overlay(b, state == 'typing', meter, music, (clock//1200)%2 == 1)
+    overlay(b, state == 'typing', meter, music)
+    environment(a, 0, clock, False)
+    environment(b, 1, clock, music)
     return image(a), image(b)
 def pair(a,b):
     canvas = Image.new('RGB',(72,128),(17,23,19))

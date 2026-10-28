@@ -5,10 +5,13 @@ controllers using the `rp2040_ce` converter. Each OLED is physically 128×32,
 rotated 270° to a 32×128 portrait framebuffer. OLED I²C uses GPIO 2/3; the split
 serial link uses GPIO 1. This is not a universal Lily58 image.
 
-The display code was tested on the physical keyboard with USB attached to either
-half. The repository's vendor-based example keymap is compiled separately from
-the personal layout used during that testing. There are no personal layout
-exports or full-flash recovery images in this repository.
+The previous display version was tested on the physical keyboard with USB attached
+to either half. This branch's field key, bent aerial, rain and fern sway pass native
+tests and compile for both halves. They have not been checked on hardware yet.
+
+The repository's vendor-based example keymap is compiled separately from the
+personal layout used during testing. There are no personal layout exports or
+full-flash recovery images in this repository.
 
 ## Build
 

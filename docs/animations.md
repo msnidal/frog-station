@@ -7,8 +7,9 @@ inspection; WAIT, DONE, FAIL and SLEEP play once per state entry on the keyboard
 | --- | --- | --- | --- |
 | ![Idle](animations/idle.gif) | ![Typing](animations/typing.gif) | ![Spotify](animations/music.gif) | ![Sleep](animations/sleep.gif) |
 
-The typing meter estimates recent pace. Spotify adds a note and a small nod;
-typing takes visual priority while the note remains. Sleep ends with the OLED off.
+The frog taps a field key while typing; the meter estimates recent pace. Spotify
+adds a note and a small nod. Typing takes visual priority while the note remains.
+Rain and fern sway continue across these states. Sleep ends with the OLED off.
 
 | Work | Wait | Done | Fail |
 | --- | --- | --- | --- |
