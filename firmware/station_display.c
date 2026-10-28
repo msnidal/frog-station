@@ -90,21 +90,22 @@ static void fern_canopy(uint8_t out[512], uint8_t shelter[32], const fs_fern_t *
         }
     }
 }
-static bool caught_by_fern(uint8_t panel, uint8_t x, uint32_t now, uint32_t descent) {
+static uint8_t fern_hit_y(uint8_t panel, uint8_t x, uint32_t now, uint32_t descent) {
     // Check where each frond was when this drop crossed it. An intercepted
     // drop must not reappear lower down when the leaf subsequently moves away.
+    uint8_t first = 128;
     for (uint8_t i = 0; i < sizeof(fs_ferns) / sizeof(fs_ferns[0]); ++i) {
         const fs_fern_t *fern = &fs_ferns[i];
         if (fern->panel != panel) continue;
         for (uint16_t j = 0; j < fern->count; ++j) {
             uint8_t fx = fern->points[j].x, y = fern->points[j].y;
-            if ((fx != x && fx + 1 != x) || descent < y * 1000u) continue;
+            if (y >= first || (fx != x && fx + 1 != x) || descent < y * 1000u) continue;
             int64_t impact = (int64_t)now - (descent - y * 1000u) / FS_RAIN_SPEED;
             uint8_t limit = fern_limit(fern, impact);
-            if (fx + (y <= limit) == x || (y == limit && fx == x)) return true;
+            if (fx + (y <= limit) == x || (y == limit && fx == x)) first = y;
         }
     }
-    return false;
+    return first;
 }
 static void reserve(uint8_t mask[512], int x0, int y0, int x1, int y1) {
     for (int y = y0; y <= y1; ++y) for (int x = x0; x <= x1; ++x)
@@ -171,6 +172,18 @@ static uint32_t rain_hash(uint32_t n) {
 static void rain_dot(uint8_t out[512], const uint8_t mask[512], const uint8_t shelter[32], int x, int y) {
     if (x >= 0 && x < 32 && y >= 0 && y < shelter[x] && !lit(mask, x, y)) pixel(out, x, y, true);
 }
+static void fern_splash(uint8_t out[512], const uint8_t mask[512], const uint8_t shelter[32], int x, int y, uint32_t age, uint32_t seed) {
+    // One contact pixel, two lifted droplets, then one falling outward. The
+    // whole splash lasts 180 ms and stays within two pixels of the impact.
+    if (age < 55u * FS_RAIN_SPEED) {
+        rain_dot(out, mask, shelter, x, y - 1);
+    } else if (age < 120u * FS_RAIN_SPEED) {
+        rain_dot(out, mask, shelter, x - 1, y - 2);
+        rain_dot(out, mask, shelter, x + 1, y - 2);
+    } else if (age < 180u * FS_RAIN_SPEED) {
+        rain_dot(out, mask, shelter, x + ((seed & 1u) ? 2 : -2), y - 1);
+    }
+}
 void fs_render_environment(uint8_t out[512], uint8_t panel, uint32_t now, bool music) {
     if (panel > 1) return;
     uint8_t shelter[32];
@@ -190,7 +203,11 @@ void fs_render_environment(uint8_t out[512], uint8_t panel, uint32_t now, bool m
         uint32_t cycle = absolute / period, local = absolute % period;
         uint32_t seed = rain_hash(salt + cycle * 719u);
         int x = 1 + (i * 11u + panel * 13u + cycle * 7u + seed % 5u) % 30u;
-        if (caught_by_fern(panel, x, now, local)) continue;
+        uint8_t hit = fern_hit_y(panel, x, now, local);
+        if (hit < 128) {
+            fern_splash(out, mask, shelter, x, hit, local - hit * 1000u, seed);
+            continue;
+        }
         if (local < 126000u) {
             int head = local / 1000u;
             // A leaf intercepts the drop for the rest of its descent. UI

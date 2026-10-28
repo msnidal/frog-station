@@ -89,3 +89,7 @@ Ferns intercept rain at their current swaying outline, keeping the space below
 dry. Exposed columns still carry rain to the ground. The frog, station and
 mushroom retain their solid silhouettes, and the music note keeps its reading
 margin. Ground ripples appear only where a drop can reach the floor.
+
+Fern impacts produce a brief splash of one or two pixels, within two pixels of
+the contact point. It ends after 180 ms and respects the same readout and canopy
+masks. Only the first leaf hit by a drop produces a splash.

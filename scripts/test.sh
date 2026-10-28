@@ -17,3 +17,5 @@ build/native/test-link
 "$task_cc" -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined -Ifirmware tests/test_environment.c firmware/station_display.c -o build/native/test-environment
 build/native/test-environment
 "$task_python" tests/test_canopy.py
+"$task_cc" -std=c11 -Wall -Wextra -Werror -fsanitize=address,undefined -Ifirmware tests/test_fern_splash.c -o build/native/test-fern-splash
+build/native/test-fern-splash

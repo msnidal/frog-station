@@ -9,7 +9,8 @@ inspection; WAIT, DONE, FAIL and SLEEP play once per state entry on the keyboard
 
 The frog taps a field key while typing; the meter estimates recent pace. Spotify
 adds a note and a small nod. Typing takes visual priority while the note remains.
-Rain starts at the top and stops at the swaying ferns, sheltering the scene below.
+Rain starts at the top and makes a tiny splash when it hits the swaying ferns,
+sheltering the scene below.
 Labels and active indicators stay clear. Sleep ends with the OLED off.
 
 | Work | Wait | Done | Fail |
